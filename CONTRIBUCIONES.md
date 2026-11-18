@@ -32,7 +32,14 @@ Cada integrante llena su fila y su sección. El historial de commits de GitHub c
 - …
 
 ### E — Andrés
-- …
+
+- **Esqueleto del repositorio:** estructura de carpetas, plantillas de los notebooks y datos dummy (`src/_dummies.py`), que permitieron al equipo trabajar en paralelo antes de tener la limpieza real.
+- **`src/rutas.py`:** rutas del proyecto y funciones `guardar_figura()` (acepta una Figure, un Axes o un FacetGrid de seaborn) y `guardar_tabla()`, usadas por todos los notebooks para exportar resultados.
+- **Notebook 05 — Fun facts:**
+  - Función reutilizable `worst_best_n_movies()` para ordenar la tabla de la pregunta 1 por cualquier métrica. Con ella se obtienen las mejores y peores películas de todos los tiempos (n ≥ 20), las mejores y peores por década de estreno y las 10 más polémicas (mayor desviación estándar).
+  - Número de ratings por género (una película con varios géneros cuenta en cada uno).
+  - Serie de tiempo de ratings por año de calificación, con el año de mayor actividad y la mayor caída señalados automáticamente (`results/figures/05_ratings_por_anio.png`).
+- **Documentación y reproducibilidad:** `README.md` (objetivo, datos, licencia, cita e instrucciones para reproducir), `requirements.txt` y este registro.
 
 ## Trabajo conjunto
 
