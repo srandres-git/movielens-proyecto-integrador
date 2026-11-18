@@ -71,7 +71,7 @@ def verificar_matriz(df: pd.DataFrame, valores: str, columnas=None) -> None:
     problemas = []
     if df.index.name != "userId":
         problemas.append(f"el índice debe llamarse 'userId' (es {df.index.name!r})")
-    datos = df.stack()  # stack() descarta los NaN
+    datos = df.stack().dropna()  # stack() descarta los NaN
     if valores == "gusto" and not datos.isin([0, 1]).all():
         problemas.append("hay valores distintos de 1, 0 o NaN")
     if valores == "proporcion" and not datos.between(0, 1).all():
