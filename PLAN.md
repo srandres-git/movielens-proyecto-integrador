@@ -71,7 +71,16 @@ El proyecto exige documentar al menos dos decisiones. Tenemos seis; las marcadas
 
 ## 4. Método por pregunta
 
-Solo usamos herramientas vistas en el curso: `describe`, cuantiles, RIC, `groupby`/`agg`, `crosstab`, `qcut`, `log1p`, Pearson/Spearman, boxplot, histograma, `hexbin`/`imshow` con matplotlib.
+Solo usamos técnicas vistas en el curso: `describe`, cuantiles, RIC, `groupby`/`agg`, `crosstab`, `qcut`, `log1p`, Pearson/Spearman, boxplot, histograma, hexbin y heatmap.
+
+**Gráficos: seaborn sobre matplotlib.** Seaborn está construido sobre matplotlib, así que conviven sin problema:
+
+- Cada notebook aplica `sns.set_theme(style="whitegrid")` en la preparación, para que todas las figuras tengan el mismo estilo.
+- Patrón recomendado: crear la figura con matplotlib y dibujar con seaborn: `fig, ax = plt.subplots()` y luego `sns.boxplot(..., ax=ax)`. Títulos, ejes y límites se ajustan con `ax.set(...)`.
+- Las funciones de seaborn **a nivel de figura** (`relplot`, `catplot`, `displot`, `jointplot`) crean su propia figura y no aceptan `ax=`. Evítenlas si quieren combinar gráficos en un mismo `plt.subplots`.
+- `rutas.guardar_figura(...)` acepta una Figure, un Axes o el objeto que devuelven las funciones a nivel de figura.
+- Seaborn trabaja mejor con **formato largo** (una fila por observación). Los contratos no cambian: quien necesite formato largo lo construye en su notebook (`melt`, `explode`). `sns.heatmap` acepta directamente una matriz ancha como la de `corr()`.
+- Equivalencias: heatmap → `sns.heatmap` (con `center=0` para correlaciones); boxplot → `sns.boxplot`; histograma → `sns.histplot`; scatter → `sns.scatterplot`; línea → `sns.lineplot`; hexbin → `ax.hexbin` de matplotlib o `sns.histplot(x=..., y=...)`.
 
 ### Pregunta 1 — Popularidad vs. polarización (integrante B)
 
@@ -100,7 +109,7 @@ Solo usamos herramientas vistas en el curso: `describe`, cuantiles, RIC, `groupb
   - Nota: la correlación de Pearson entre dos variables 0/1 es el coeficiente phi.
 - **Resultados:**
   - Tabla con los pares más correlacionados: triángulo superior de la matriz, `stack` y ordenar.
-  - Heatmap (`imshow`) de unas 20 películas.
+  - Heatmap (`sns.heatmap`) de unas 20 películas.
   - Un heatmap de 138 × 138 no se lee: no lo usamos.
 - **"Si te gusta X, te gusta Y" es una relación asimétrica.** Para los 5 mejores pares, calcular `pd.crosstab(..., normalize='index')`, que da P(le gusta Y | le gusta X), y compararla con P(le gusta Y) en general.
 - **Limitación:** los usuarios tienen escalas distintas (el % de ratings ≥ 4 va de 0 % a 100 %). Se documenta con un `describe` y no se corrige.
@@ -194,11 +203,11 @@ movielens-proyecto-integrador/
 
 | Integrante | Responsabilidad | Entregables |
 |---|---|---|
-| **A** — Datos y calidad | Carga, validaciones, decisiones de limpieza 1–5, bitácora | `carga.py`, `limpieza.py`, notebook 01, `bitacora_limpieza.csv` |
-| **B** — Pregunta 1 | Tabla por película, umbral y sensibilidad (decisión 6), correlaciones y gráficos | `stats_peliculas`, notebook 02 |
-| **C** — Pregunta 2a | Matriz de gustos, mejores pares, probabilidades condicionales | `matriz_gustos`, notebook 03 |
-| **D** — Pregunta 2b | Preferencia vs. coocurrencia de géneros, tabla y boxplot por género | `perfil_genero`, notebook 04 |
-| **E** — Fun facts e integración | Fun facts; README, `requirements.txt`, CONTRIBUCIONES; ejecución completa desde cero; borrar `_dummies.py` al final; guion y edición del video | `rutas.py`, notebook 05, documentación, tag final |
+| **A** (Alan) — Datos y calidad | Carga, validaciones, decisiones de limpieza 1–5, bitácora | `carga.py`, `limpieza.py`, notebook 01, `bitacora_limpieza.csv` |
+| **B** (Pau) — Pregunta 1 | Tabla por película, umbral y sensibilidad (decisión 6), correlaciones y gráficos | `stats_peliculas`, notebook 02 |
+| **C** (Jonathan) — Pregunta 2a | Matriz de gustos, mejores pares, probabilidades condicionales | `matriz_gustos`, notebook 03 |
+| **D** (Hugo) — Pregunta 2b | Preferencia vs. coocurrencia de géneros, tabla y boxplot por género | `perfil_genero`, notebook 04 |
+| **E** (Andrés) — Fun facts e integración | Fun facts; README, `requirements.txt`, CONTRIBUCIONES; ejecución completa desde cero; borrar `_dummies.py` al final; guion y edición del video | `rutas.py`, notebook 05, documentación, tag final |
 
 Cada integrante presenta su parte en el video (requisito: todos participan con una aportación sustantiva).
 
