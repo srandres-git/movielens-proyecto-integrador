@@ -19,8 +19,15 @@ Cada integrante llena su fila y su sección. El historial de commits de GitHub c
 - …
 
 ### C — Jonathan
-- …
-
+- Desarrollo de `src/afinidades_peliculas.py`, implementando la función `matriz_gustos()` para construir una matriz usuario-película a partir de las calificaciones.
+- Filtrado de películas con al menos 100 calificaciones para trabajar con observaciones suficientes.
+- Transformación de las calificaciones en una variable binaria de aceptación: 1 si la calificación es igual o superior a 4 y 0 en caso contrario, conservando los valores faltantes como `NaN`.
+- Análisis de las diferencias en los hábitos de calificación de los usuarios mediante el porcentaje de películas que calificaron con 4 o más.
+- Cálculo de correlaciones de Pearson entre películas, utilizando un mínimo de 20 observaciones compartidas.
+- Identificación y ordenamiento de las parejas de películas con mayor correlación, incorporando sus títulos.
+- Elaboración de un mapa de calor (*heatmap*) para visualizar las afinidades entre las películas más reseñadas.
+- Comparación de las probabilidades condicionadas \(P(Y=1 \mid X=1)\) con las probabilidades generales \(P(Y=1)\) para las cinco parejas con mayor correlación.
+- Interpretación de los resultados y documentación de las limitaciones del análisis, incluyendo el sesgo de calificación, los datos faltantes y la interpretación de las correlaciones.
 ### D — Hugo
 - …
 
