@@ -137,10 +137,14 @@ movielens-proyecto-integrador/
 ├── requirements.txt
 ├── data/raw/               # movies.csv, ratings.csv y README.txt originales
 ├── src/
-│   ├── contratos.py        # columnas esperadas de cada tabla + verificar_esquema()
-│   ├── carga.py            # lectura con tipos                         (A)
-│   ├── limpieza.py         # validaciones, géneros, año, bitácora      (A)
-│   └── metricas.py         # tablas derivadas para las preguntas       (B, C, D)
+│   ├── contratos.py             # columnas esperadas de cada tabla + verificar_esquema()
+│   ├── rutas.py                 # rutas y guardar_figura() / guardar_tabla()   (E)
+│   ├── carga.py                 # lectura con tipos                             (A)
+│   ├── limpieza.py              # validaciones, géneros, año                    (A)
+│   ├── polarizacion.py          # stats_peliculas()                             (B)
+│   ├── afinidades_peliculas.py  # matriz_gustos()                               (C)
+│   ├── afinidades_generos.py    # perfil_genero()                               (D)
+│   └── _dummies.py              # datos inventados; se borra al final
 ├── notebooks/
 │   ├── 01_comprension_calidad.ipynb        (A)
 │   ├── 02_popularidad_polarizacion.ipynb   (B)
@@ -164,14 +168,16 @@ movielens-proyecto-integrador/
 
 | Función | Salida | Responsable | La usan |
 |---|---|---|---|
-| `cargar_movies()` | `movieId` str · `title` str · `genres` str | A | A |
-| `cargar_ratings()` | `userId` str · `movieId` str · `rating` float · `timestamp` int | A | A |
-| `validar_llave(df, cols)` | resumen con número de duplicados y de nulos en `cols` | A | A |
-| `movies_limpias(movies_raw)` | `movieId` (único) · `title` (sin espacios sobrantes) · `anio` Int64 · `n_generos` int · `es_imax` 0/1 · 18 columnas de género 0/1 | A | B, C, D, E |
-| `ratings_limpias(ratings_raw)` | `userId` · `movieId` · `rating` · `fecha` datetime UTC · `anio_rating` int | A | B, C, D, E |
-| `stats_peliculas(ratings, movies, min_n=20)` | `movieId` · `title` · `anio` · `n` · `media` · `mediana` · `std` · `ric` | B | B, E |
-| `matriz_gustos(ratings, min_n=100)` | índice `userId` × columnas `movieId`; valores 1.0 / 0.0 / NaN | C | C |
-| `perfil_genero(ratings, movies, min_r=5)` | índice `userId` × 18 géneros; proporción en [0, 1] o NaN | D | D |
+| `carga.cargar_movies()` | `movieId` str · `title` str · `genres` str | A | A |
+| `carga.cargar_ratings()` | `userId` str · `movieId` str · `rating` float · `timestamp` int | A | A |
+| `limpieza.validar_llave(df, cols)` | dict con `es_llave`, `duplicados` y `nulos` | A | A |
+| `limpieza.movies_limpias(movies_raw)` | `movieId` (único) · `title` (sin espacios sobrantes) · `anio` Int64 · `n_generos` int · `es_imax` 0/1 · 18 columnas de género 0/1 | A | B, C, D, E |
+| `limpieza.ratings_limpias(ratings_raw)` | `userId` · `movieId` · `rating` · `fecha` datetime UTC · `anio_rating` int | A | B, C, D, E |
+| `polarizacion.stats_peliculas(ratings, movies, min_n=20)` | `movieId` · `title` · `anio` · `n` · `media` · `mediana` · `std` · `ric` | B | B, E |
+| `afinidades_peliculas.matriz_gustos(ratings, min_n=100)` | índice `userId` × columnas `movieId`; valores 1.0 / 0.0 / NaN | C | C |
+| `afinidades_generos.perfil_genero(ratings, movies, min_r=5)` | índice `userId` × 18 géneros; proporción en [0, 1] o NaN | D | D |
+
+`limpieza.datos_limpios()` no es dummy: llama a las cuatro funciones de A y devuelve `(movies, ratings)` limpias. Los notebooks 02 a 05 empiezan con esa línea.
 
 **Ruta crítica:** `movies_limpias` y `ratings_limpias` bloquean a todos, y `stats_peliculas` bloquea a E. Son cortas, así que A y B las priorizan para tener la versión real a mediodía del día 1.
 
@@ -192,7 +198,7 @@ movielens-proyecto-integrador/
 | **B** — Pregunta 1 | Tabla por película, umbral y sensibilidad (decisión 6), correlaciones y gráficos | `stats_peliculas`, notebook 02 |
 | **C** — Pregunta 2a | Matriz de gustos, mejores pares, probabilidades condicionales | `matriz_gustos`, notebook 03 |
 | **D** — Pregunta 2b | Preferencia vs. coocurrencia de géneros, tabla y boxplot por género | `perfil_genero`, notebook 04 |
-| **E** — Fun facts e integración | Fun facts; README, `requirements.txt`, CONTRIBUCIONES; ejecución completa desde cero; guion y edición del video | notebook 05, documentación, tag final |
+| **E** — Fun facts e integración | Fun facts; README, `requirements.txt`, CONTRIBUCIONES; ejecución completa desde cero; borrar `_dummies.py` al final; guion y edición del video | `rutas.py`, notebook 05, documentación, tag final |
 
 Cada integrante presenta su parte en el video (requisito: todos participan con una aportación sustantiva).
 

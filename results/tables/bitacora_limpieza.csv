@@ -1,0 +1,7 @@
+id,problema,evidencia,decision,consecuencia
+1,"IDs leídos como número pueden aparecer como 'x.0'; ratings fuera del conjunto válido","PENDIENTE","Leer userId y movieId como str desde read_csv; validar rating contra {0.5, ..., 5.0}","PENDIENTE"
+2,"Títulos duplicados con movieId distinto","PENDIENTE","No fusionar; movieId sigue siendo la llave; mostrar título + movieId","PENDIENTE"
+3,"Películas con '(no genres listed)'","PENDIENTE","No imputar; se conservan en análisis por película y quedan fuera de los análisis por género","PENDIENTE"
+4,"IMAX en los datos pero no en el README (es un formato); 'Children's' vs 'Children'","PENDIENTE","Excluir IMAX de los géneros y guardarlo como bandera es_imax; documentar la discrepancia","PENDIENTE"
+5,"Títulos con espacios sobrantes y sin año","PENDIENTE","Quitar espacios antes de extraer el año; sin año queda <NA> y no se imputa","PENDIENTE"
+6,"Estadísticos por película poco confiables con pocos ratings","PENDIENTE","Umbral n >= 20 con análisis de sensibilidad (10, 20, 50)","PENDIENTE"
