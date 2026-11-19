@@ -1,0 +1,5 @@
+cuartil_popularidad,n_min,n_max,std_mediana,media_mediana
+Q1 (menos populares),20,28,1.04,3.52
+Q2,29,41,1.03,3.47
+Q3,42,62,1.03,3.46
+Q4 (más populares),63,119,1.05,3.51
