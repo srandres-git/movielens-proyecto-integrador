@@ -28,8 +28,16 @@ Cada integrante llena su fila y su sección. El historial de commits de GitHub c
 - Elaboración de un mapa de calor (*heatmap*) para visualizar las afinidades entre las películas más reseñadas.
 - Comparación de las probabilidades condicionadas \(P(Y=1 \mid X=1)\) con las probabilidades generales \(P(Y=1)\) para las cinco parejas con mayor correlación.
 - Interpretación de los resultados y documentación de las limitaciones del análisis, incluyendo el sesgo de calificación, los datos faltantes y la interpretación de las correlaciones.
+
 ### D — Hugo
-- …
+
+- Desarrollo de `src/afinidades_generos.py`, implementando la función `perfil_genero()` para construir una matriz usuario+generos a partir de las calificaciones.
+-Elaboración de tabla resumen con número de películas, númer de ratings, media de ratings, mediana de ratings y std de raitings agrupada por género.
+-Elaboración de BoxPlot para la visualización de ratings por género.
+-Elaboración de las matrices de correlación (coocurrencia y preferenica).
+- Elaboración de los mapas de calor para visualizar las diferencias entre las correlaciones de coocurrencia y preferencia.
+- Elaboración de gráfico scatterplot para visualizar la relación entre las correlaciones de coocurrencia y preferencias.
+- Interpretación de los resultados y documentación de las limitaciones del análisis, incluyendo el sesgo de calificación y la interpretación de la relación entre las correlaciones de coocurrencia y preferencia.
 
 ### E — Andrés
 
