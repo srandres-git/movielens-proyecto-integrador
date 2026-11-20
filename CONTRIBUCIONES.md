@@ -4,19 +4,28 @@ Cada integrante llena su fila y su sección. El historial de commits de GitHub c
 
 | Rol | Integrante | Archivos principales |
 |---|---|---|
-| A — Datos y calidad | Alan | `src/carga.py`, `src/limpieza.py`, `notebooks/01_comprension_calidad.ipynb`, `results/tables/bitacora_limpieza.csv` |
-| B — Pregunta 1 | Pau | `src/polarizacion.py`, `notebooks/02_popularidad_polarizacion.ipynb` |
+| A — Datos y calidad | Pau | `src/carga.py`, `src/limpieza.py`, `notebooks/01_comprension_calidad.ipynb`, `results/tables/bitacora_limpieza.csv` |
+| B — Pregunta 1 | Alan | `src/polarizacion.py`, `notebooks/02_popularidad_polarizacion.ipynb` |
 | C — Pregunta 2a | Jonathan | `src/afinidades_peliculas.py`, `notebooks/03_afinidades_peliculas.ipynb` |
 | D — Pregunta 2b | Hugo | `src/afinidades_generos.py`, `notebooks/04_afinidades_generos.ipynb` |
 | E — Fun facts e integración | Andrés | `src/rutas.py`, `notebooks/05_fun_facts.ipynb`, `README.md`, `requirements.txt` |
 
 ## Detalle por integrante
 
-### A — Alan
+### A — Pau
 - …
 
-### B — Pau
-- …
+### B — Alan
+- Desarrollo de `src/polarizacion.py`, implementando la función `stats_peliculas()`, que resume los ratings por película: número de ratings (`n`), media, mediana, desviación estándar muestral (`std`) y rango intercuartílico (`ric`). Aplica el umbral mínimo de ratings (decisión 6) y agrega título y año de estreno. Esta tabla también la usa el notebook 05.
+- **Notebook 02 — Pregunta 1 (popularidad vs. polarización):**
+  - Justificación del umbral mínimo de ratings por película: con un solo rating la desviación estándar no existe y con pocos es ruido. Tabla de sensibilidad con umbrales de 10, 20, 50 y 100 (películas que quedan y % de ratings conservados). Umbral principal: n ≥ 20 
+  - Estadística descriptiva de `n`, `media`, `std` y `ric`.
+  - Cálculo de correlaciones de Spearman (medida principal, por la fuerte asimetría de `n`) y de Pearson (comparación) entre n–std, n–media y media–std, para tener en cuenta la media como factor de confusión debido a la escala acotada de 0.5 a 5.
+  - Gráfico *hexbin* de `log1p(n)` contra `std`, y *boxplot* de `std` por cuartil de popularidad (`pd.qcut`).
+  - Histogramas de los ratings de las tres películas con mayor desviación estándar, para distinguir entre polarización real (dos bandos) y opiniones simplemente dispersas.
+  - Análisis de sensibilidad de la correlación n–std con umbrales de 10, 20 y 50 ratings.
+  - Interpretación de cada gráfico (qué muestra, por qué es relevante y limitaciones) y conclusión: no se encontró relación entre popularidad y polarización, resultado que se mantiene con los otros umbrales.
+  - Exportación de las figuras (`02_hexbin_n_std`, `02_boxplot_std_popularidad`, `02_histogramas_polemicas`) y de las tablas `02_*` a `results/`.
 
 ### C — Jonathan
 - Desarrollo de `src/afinidades_peliculas.py`, implementando la función `matriz_gustos()` para construir una matriz usuario-película a partir de las calificaciones.
