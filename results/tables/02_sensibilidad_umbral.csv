@@ -1,0 +1,4 @@
+umbral,películas,"ρ Spearman (n, std)","r Pearson (n, std)"
+n ≥ 10,216,-0.018,-0.024
+n ≥ 20,152,0.048,0.035
+n ≥ 50,57,0.136,0.108

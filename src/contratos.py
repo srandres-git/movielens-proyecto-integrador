@@ -75,6 +75,7 @@ def verificar_matriz(df: pd.DataFrame, valores: str, columnas=None) -> None:
     if valores == "gusto" and not datos.isin([0, 1]).all():
         problemas.append("hay valores distintos de 1, 0 o NaN")
     if valores == "proporcion" and not datos.between(0, 1).all():
+        datos = pd.Series(df.to_numpy().ravel()).dropna()
         problemas.append("hay valores fuera de [0, 1]")
     if columnas is not None and not set(df.columns) <= set(columnas):
         problemas.append(f"columnas inesperadas: {sorted(set(df.columns) - set(columnas))}")
