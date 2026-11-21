@@ -203,8 +203,8 @@ movielens-proyecto-integrador/
 
 | Integrante | Responsabilidad | Entregables |
 |---|---|---|
-| **A** (Alan) — Datos y calidad | Carga, validaciones, decisiones de limpieza 1–5, bitácora | `carga.py`, `limpieza.py`, notebook 01, `bitacora_limpieza.csv` |
-| **B** (Pau) — Pregunta 1 | Tabla por película, umbral y sensibilidad (decisión 6), correlaciones y gráficos | `stats_peliculas`, notebook 02 |
+| **A** (Pau) — Datos y calidad | Carga, validaciones, decisiones de limpieza 1–5, bitácora | `carga.py`, `limpieza.py`, notebook 01, `bitacora_limpieza.csv` |
+| **B** (ALan) — Pregunta 1 | Tabla por película, umbral y sensibilidad (decisión 6), correlaciones y gráficos | `stats_peliculas`, notebook 02 |
 | **C** (Jonathan) — Pregunta 2a | Matriz de gustos, mejores pares, probabilidades condicionales | `matriz_gustos`, notebook 03 |
 | **D** (Hugo) — Pregunta 2b | Preferencia vs. coocurrencia de géneros, tabla y boxplot por género | `perfil_genero`, notebook 04 |
 | **E** (Andrés) — Fun facts e integración | Fun facts; README, `requirements.txt`, CONTRIBUCIONES; ejecución completa desde cero; borrar `_dummies.py` al final; guion y edición del video | `rutas.py`, notebook 05, documentación, tag final |
