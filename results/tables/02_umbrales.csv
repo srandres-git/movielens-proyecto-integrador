@@ -1,0 +1,5 @@
+umbral,películas,% de ratings conservados
+n ≥ 10,2269,80
+n ≥ 20,1297,67
+n ≥ 50,450,41
+n ≥ 100,138,20
