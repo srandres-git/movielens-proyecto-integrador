@@ -1,5 +1,6 @@
 """Rutas del proyecto y funciones para guardar resultados. Responsable: E."""
 from pathlib import Path
+import pandas as pd
 
 RAIZ = Path(__file__).resolve().parents[1]
 DATOS = RAIZ / "data" / "raw"
@@ -24,8 +25,8 @@ def guardar_figura(fig, nombre: str) -> Path:
     return ruta
 
 
-def guardar_tabla(df, nombre: str, index: bool = False) -> Path:
-    """Guarda ``df`` en results/tables/<nombre>.csv (UTF-8)."""
+def guardar_tabla(df: pd.DataFrame, nombre: str, index: bool = False) -> Path:
+    """Guarda ``df`` en results/tables/<nombre>.csv (latin-1)."""
     ruta = TABLAS / f"{nombre}.csv"
-    df.to_csv(ruta, index=index, encoding="utf-8")
+    df.to_csv(ruta, index=index, encoding="latin-1")
     return ruta
