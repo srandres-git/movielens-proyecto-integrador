@@ -26,7 +26,7 @@ def guardar_figura(fig, nombre: str) -> Path:
 
 
 def guardar_tabla(df: pd.DataFrame, nombre: str, index: bool = False) -> Path:
-    """Guarda ``df`` en results/tables/<nombre>.csv (latin-1)."""
+    """Guarda ``df`` en results/tables/<nombre>.csv (UTF-8 con BOM, para que Excel muestre bien los acentos)."""
     ruta = TABLAS / f"{nombre}.csv"
-    df.to_csv(ruta, index=index, encoding="latin-1")
+    df.to_csv(ruta, index=index, encoding="utf-8-sig")
     return ruta
